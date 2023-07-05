@@ -1,0 +1,18 @@
+.post button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.heartIcon * {
+    color: red;
+    fill: red;
+    background-color: red;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
