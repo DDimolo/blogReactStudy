@@ -1,4 +1,4 @@
-.post button {
+.secondaryBtn {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -15,4 +15,19 @@
 .button-wrapper {
     display: flex;
     justify-content: space-between;
+}
+
+.post{
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+
+}
+
+.post:hover {
+    background-color: #f9f9f9;
+}
+
+h2 {
+    margin: 0;
 }

@@ -11,11 +11,11 @@ export const BlogItem = ({ title, description, liked, likePost, deletePost}) => 
       <h2>{title}</h2>
       <p>{description}</p>
       <div className="button-wrapper">
-        <button onClick={likePost}>
+        <button onClick={likePost} className="secondaryBtn">
           <HeartIcon color={heartFill} />
           Нравится
         </button>
-        <button onClick={deletePost}>
+        <button onClick={deletePost} className="secondaryBtn">
           <TrashIcon color='black' />
         </button>
         

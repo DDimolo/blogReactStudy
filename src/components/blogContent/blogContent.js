@@ -2,10 +2,11 @@ import { Component } from "react";
 import { posts } from "../../shared/projectData";
 import { BlogItem } from "./components/BlogItem";
 import "./main.css";
+import { AddPostForm } from "../AddPostForm/AddPostForm";
 
 export class BlogContent extends Component {
   state = {
-    showBlog: true,
+    showAddForm: false,
     blogArr: JSON.parse(localStorage.getItem("blogPosts")) || posts,
   };
 
@@ -20,16 +21,24 @@ export class BlogContent extends Component {
     localStorage.setItem("blogPosts", JSON.stringify(temp));
   };
 
-  toggleBlog = () => {
-    this.setState((state) => {
-      return {
-        showBlog: !state.showBlog,
-      };
+  handleShowAddForm = () => {
+    this.setState({
+      showAddForm: true,
+    });
+  };
+
+  handleHideAddForm = () => {
+    this.setState({
+      showAddForm: false,
     });
   };
 
   deletePost = (pos) => {
-    if (window.confirm(`Вы собираетесь удалить пост ${this.state.blogArr[pos].title}`)) {
+    if (
+      window.confirm(
+        `Вы собираетесь удалить пост ${this.state.blogArr[pos].title}`
+      )
+    ) {
       const temp = [...this.state.blogArr];
       temp.splice(pos, 1);
 
@@ -37,7 +46,7 @@ export class BlogContent extends Component {
         blogArr: temp,
       });
 
-      localStorage.setItem('blogPosts', JSON.stringify(temp))
+      localStorage.setItem("blogPosts", JSON.stringify(temp));
     }
   };
 
@@ -56,17 +65,21 @@ export class BlogContent extends Component {
     });
     return (
       <>
-        {this.state.showBlog ? "Блог показан" : "Блог скрыт"}
-        <button onClick={this.toggleBlog}>
-          {this.state.showBlog ? "Скрыть блог" : "Показать блог"}
-        </button>
-
-        {this.state.showBlog ? (
-          <>
-            <h1>Simple Blog</h1>
-            <div class="posts">{blogPosts}</div>
-          </>
+        {this.state.showAddForm ? (
+          <AddPostForm handleHideAddForm={this.handleHideAddForm} />
         ) : null}
+        <>
+          <div className="containerMain">
+            <div className="pageTitle">
+              <h1>Simple Blog</h1>
+              <button className="accentBtn" onClick={this.handleShowAddForm}>
+                Создать новый пост
+              </button>
+            </div>
+
+            <div class="posts">{blogPosts}</div>
+          </div>
+        </>
       </>
     );
   }
